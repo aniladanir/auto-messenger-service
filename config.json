@@ -1,0 +1,9 @@
+{
+    "http_port": 6060,
+    "db_conn_string": "postgres://postgres:postgres@db:5432/messenger?sslmode=disable",
+    "redis_addr": "redis:6379",
+    "webhook_url": "https://webhook.site/05d2c88c-e5cc-424d-9958-a8d394f4dad1",
+    "msg_batch_size": 2,
+    "msg_send_interval": "2m",
+    "msg_max_retry": 10
+}

@@ -1,0 +1,98 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API for automatic message sending service",
+        "title": "Auto Messenger API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:6060",
+    "basePath": "/",
+    "paths": {
+        "/messages": {
+            "get": {
+                "description": "Retrieves all messages marked as sent",
+                "tags": [
+                    "Messages"
+                ],
+                "summary": "Get list of sent messages",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/domain.Message"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/start": {
+            "post": {
+                "description": "Starts the background process that sends x messages every y minutes",
+                "tags": [
+                    "Control"
+                ],
+                "summary": "Start the automatic message sender",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stop": {
+            "post": {
+                "description": "Stops the background sending process",
+                "tags": [
+                    "Control"
+                ],
+                "summary": "Stop the automatic message sender",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "domain.Message": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

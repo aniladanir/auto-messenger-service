@@ -1,0 +1,64 @@
+basePath: /
+definitions:
+  domain.Message:
+    properties:
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      phone_number:
+        type: string
+      status:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+host: localhost:6060
+info:
+  contact: {}
+  description: API for automatic message sending service
+  title: Auto Messenger API
+  version: "1.0"
+paths:
+  /messages:
+    get:
+      description: Retrieves all messages marked as sent
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Message'
+            type: array
+      summary: Get list of sent messages
+      tags:
+      - Messages
+  /start:
+    post:
+      description: Starts the background process that sends x messages every y minutes
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Start the automatic message sender
+      tags:
+      - Control
+  /stop:
+    post:
+      description: Stops the background sending process
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Stop the automatic message sender
+      tags:
+      - Control
+swagger: "2.0"
